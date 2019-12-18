@@ -1,0 +1,27 @@
+---
+# tasks file for register-system
+
+- name: Install satellite katello rpm
+  yum:
+    name: "http://{{ SATELLITE_FQDN }}/pub/{{ KATELLO_PACKAGE }}"
+    state: latest
+  tags:
+    - register
+
+- name: Register with activationkey and consume subscriptions matching Red Hat Enterprise Server
+  redhat_subscription:
+    state: present
+    activationkey: "{{ SATELLITE_KEY }}"
+    org_id: "{{ SATELLITE_ORG }}"
+    server_hostname: "{{ SATELLITE_FQDN }}"
+  tags:
+    - register
+
+- name: Enable all repositories starting with rhel-7-server
+  rhsm_repository:
+    name:
+      - "{{ REPOSITORIES }}"
+    state: enabled
+    purge: "{{ PURGE }}"
+  tags:
+    - register
