@@ -1,6 +1,6 @@
 # satellite-register
 
-Ansible 2.8 required
+Ansible 2.8 required if PURGE is set to true
 
 In order to use this role you should define the following variables. 
 
@@ -13,5 +13,7 @@ REPOSITORIES:
   - rhel-7-server-rpms
   - rhel-7-server-extras-rpms
   - rhel-server-rhscl-7-rpms
+
+# This will remove any repos not listed above
 PURGE: yes
 

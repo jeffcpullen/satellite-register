@@ -21,6 +21,15 @@
   rhsm_repository:
     name: "{{ REPOSITORIES }}"
     state: enabled
-    purge: "{{ PURGE }}"
+    purge: yes
+  when: PURGE
+  tags:
+    - register
+
+- name: Enable all repositories starting with rhel-7-server
+  rhsm_repository:
+    name: "{{ REPOSITORIES }}"
+    state: enabled
+  when: not PURGE
   tags:
     - register
