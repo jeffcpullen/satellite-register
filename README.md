@@ -15,5 +15,5 @@ REPOSITORIES:
   - rhel-server-rhscl-7-rpms
 
 # This will remove any repos not listed above
-PURGE: yes
+#PURGE: yes
 
